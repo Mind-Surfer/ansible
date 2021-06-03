@@ -23,43 +23,32 @@ The image is updated with the latest package and security once per week. Please 
 
 ## Usage
 
-The container expects three parameters: -
+The container expects a volume (data) and three parameters: -
 
-- HOSTS
+- INVENTORY
 - SSH_KEY
 - PLAYBOOK
 
-### HOSTS
+These parameters map to locations within the the data volume. 
 
-This is the name of the Ansible HOSTS file i.e. hosts. It should contain the details of the hosts that you wish your play book to run against. If not specified, the default name is hosts.
+### INVENTORY
+
+This is the file path and file name of the Ansible inventory/hosts file i.e. /data/inventory. It should contain the details of the hosts that you wish your play book to run against. If not specified, the default value is /data/inventory.
 
 ### SSH_KEY
 
-The name of the private and public SSH key that will be used to authenticate to the hosts listed in your HOSTS file i.e. id_rsa. The public part of the SSH key must already configured for use on your hosts. If not specified, the default name is id_rsa.
+The directory path of the private and public SSH key that will be used to authenticate to the hosts listed in your HOSTS file. The public part of the SSH key must already configured for use on your hosts. If not specified, the default value is /data/ssh.
 
 ### PLAYBOOK
 
-This is the name of the .yml/.yaml file that you want Ansible to execute for you i.e playbook.yml. If not specified, the default is playbook.yml.
-
-### Data Volume
-
-This volume is the location that the image will pick up the above files from. 
-
-### File Name and Path
-
-You can specify the names in the above variables as a path if the file is stored in a subdirectory of the data volume i.e. /data/hosts-directory/hosts. If no path is specified, the file is assumed to be in the root of the data volume.
+This is the file path and file name of the .yml/.yaml file that you want Ansible to execute for you i.e playbook.yml. If not specified, the default value is /data/playbook.yml.
 
 ### Docker Run Example
 
 `docker run --name ansible
-    -d
     -it
-    -e HOSTS="ansible_hosts"
-    -e SSH_KEY="id_ansible_rsa"
-    -e PLAYBOOK="ansible_playbook.yml"
+    -e HOSTS="/data/ansible_hosts"
+    -e SSH_KEY="/data/ssh/id_ansible_rsa"
+    -e PLAYBOOK="/data/ansible_playbook.yml"
     -v ~/ansible:/data/
     mindsurfer/ansible:latest`
-
-### Behaviour
-
-If the file names used in the variables are not found in the volume location, Ansible will not be executed.
