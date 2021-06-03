@@ -2,7 +2,10 @@
 
 ## Supported Versions
 
-Write something.
+The supported tags are: -
+
+- v1.00
+- latest
 
 ## Reporting a Vulnerability
 
