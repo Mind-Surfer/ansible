@@ -47,8 +47,8 @@ This is the file path and file name of the .yml/.yaml file that you want Ansible
 
 `docker run --name ansible
     -it
-    -e HOSTS="/data/ansible_hosts"
-    -e SSH_KEY="/data/ssh/id_ansible_rsa"
+    -e INVENTORY="/data/ansible_inventory"
+    -e SSH_KEY="/data/ssh/"
     -e PLAYBOOK="/data/ansible_playbook.yml"
     -v ~/ansible:/data/
     mindsurfer/ansible:latest`
