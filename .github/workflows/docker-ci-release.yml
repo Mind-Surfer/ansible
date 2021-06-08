@@ -1,0 +1,57 @@
+# This pipeline is used to push a release to Docker Hub
+# The tag latest is added to the image along with the version in the tag
+name: Docker CI Production Release
+
+# Controls when the action will run. 
+on:
+  push:
+    tags: v[1-9]+.[0-9]+.[0-9]+
+    branch: main
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    - name: Check Out Repo 
+      uses: actions/checkout@v2
+
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      
+    - name: Test
+      run: echo $RELEASE_VERSION
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      if: startsWith( github.ref, 'refs/tags/v')
+      with:
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+    - name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+      if: startsWith( github.ref, 'refs/tags/v')
+
+    - name: Build and push
+      id: docker_build
+      uses: docker/build-push-action@v2
+      if: startsWith( github.ref, 'refs/tags/v')
+      with:
+        context: ./
+        file: ./Dockerfile
+        push: true
+        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/ansible:latest, ${{ secrets.DOCKER_HUB_USERNAME }}/ansible:${{ env.RELEASE_VERSION }}
+
+    - name: Image digest
+      run: echo ${{ steps.docker_build.outputs.digest }}
+      if: startsWith( github.ref, 'refs/tags/v')
