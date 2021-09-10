@@ -61,4 +61,4 @@ If you've found a bug or have suggestion that can improve this image, let us kno
 
 If you appreciate my work, buy me coffee! :smile:
 
-[![If you appreciate my work, buy me coffee](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9A8T62P8DDAMC)
+<a href="https://www.buymeacoffee.com/mindsurfer" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height= "60" width="217" ></a>
