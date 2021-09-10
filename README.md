@@ -2,7 +2,7 @@
 
 This is a Docker container of Ansible that will execute a play book against a defined set of hosts or host.
 
-## Baseimage
+## Base Image
 
 The container's base image is alpine.
 
@@ -10,10 +10,10 @@ The container's base image is alpine.
 
 The supported tags are: -
 
-- v1.00
+- v1..*.*
 - latest
 
-The tag latest is an identicle copy of the most recent stable version.
+The tag latest is an identical copy of the most recent stable version.
 
 ## Package and Security Updates
 
