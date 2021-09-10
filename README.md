@@ -1,6 +1,6 @@
 # Ansible
 
-This is a Docker container of Ansible that will execute a play book against a defined set of hosts or host. 
+This is a Docker container of Ansible that will execute a play book against a defined set of hosts or host.
 
 ## Baseimage
 
@@ -17,7 +17,7 @@ The tag latest is an identicle copy of the most recent stable version.
 
 ## Package and Security Updates
 
-The image is updated with the latest package and security once per week. Please note that only the supported tags will receive the updates. 
+The image is updated with the latest package and security once per week. Please note that only the supported tags will receive the updates.
 
 ----
 
@@ -29,7 +29,7 @@ The container expects a volume (data) and three parameters: -
 - SSH_KEY
 - PLAYBOOK
 
-These parameters map to locations within the the data volume. 
+These parameters map to locations within the the data volume.
 
 ### INVENTORY
 
@@ -52,3 +52,13 @@ This is the file path and file name of the .yml/.yaml file that you want Ansible
     -e PLAYBOOK="/data/ansible_playbook.yml"
     -v ~/ansible:/data/
     mindsurfer/ansible:latest`
+
+## Found a Bug Or Have a Suggestion?
+
+If you've found a bug or have suggestion that can improve this image, let us know by logging it [here](https://github.com/Mind-Surfer/ansible/issues/new/choose).
+
+## Donations
+
+If you appreciate my work, buy me coffee! :smile:
+
+[![If you appreciate my work, buy me coffee](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9A8T62P8DDAMC)
